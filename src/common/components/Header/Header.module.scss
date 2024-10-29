@@ -1,0 +1,13 @@
+.header {
+  align-items: center;
+  .toolbar {
+    gap: 20px;
+    .select {
+      width: 200px;
+    }
+    .button {
+      color: black;
+      height: 56px;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import 'reset.css';
+@import 'react-toastify/dist/ReactToastify.css';
+
+.Toastify__toast-container {
+  z-index: 999 !important;
+}
