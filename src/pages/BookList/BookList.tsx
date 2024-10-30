@@ -38,7 +38,14 @@ const BookList = observer(() => {
   });
 
   useEffect(() => {
-    if (query) getBooks(query, sort, page, true);
+    if (query) {
+      setPage(1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      getBooks(query, sort, page, true);
+    }
   }, [query, sort]);
 
   useEffect(() => {
