@@ -23,7 +23,7 @@ const BookList = observer(() => {
   const [key, setKey] = useState<string>('');
   const input = useRef<HTMLInputElement | null>(null);
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 1,
   });
 
   const onSubmit = async (values: BookFields) => {
@@ -42,14 +42,14 @@ const BookList = observer(() => {
       setPage(1);
       window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: 'instant',
       });
-      getBooks(query, sort, page, true);
+      getBooks(query, sort, 1, true);
     }
   }, [query, sort]);
 
   useEffect(() => {
-    if (query) getBooks(query, sort, page);
+    if (query && page !== 1) getBooks(query, sort, page);
   }, [page]);
 
   useEffect(() => {
