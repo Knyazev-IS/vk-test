@@ -21,8 +21,8 @@ module.exports = {
         sourceType: 'module',
         project: './tsconfig.json',
     },
-    ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts'],
-    plugins: ['import', 'react', '@typescript-eslint', 'prettier', 'unused-imports'],
+    ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts', 'jest.polyfills.js'],
+    plugins: ['react', '@typescript-eslint', 'prettier', 'unused-imports'],
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         'react/react-in-jsx-scope': 0,

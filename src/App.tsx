@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import BookList from './common/components/BookList/BookList';
+import BookList from './pages/BookList/BookList';
 
 function App() {
   return (

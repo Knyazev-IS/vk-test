@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { Book, BooksResponse } from '../common/types/Book';
 import Sort from '../common/types/Sort';
-import { getOpenlibraryUrl } from '../common/constants/api';
+import { getOpenlibraryUrl } from '../common/utils/api';
 
 class BookStore {
   books: Book[] = [];

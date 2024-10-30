@@ -1,4 +1,9 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import { FormikProps } from 'formik';
 import { BookFields } from '../../validations/bookValidationSchema';
 
@@ -8,12 +13,12 @@ interface EditBookDialogProps {
   formik: FormikProps<BookFields>;
 }
 
-function EditBookDialog({ open, onClose, formik }: EditBookDialogProps) {
+function EditDialog({ open, onClose, formik }: EditBookDialogProps) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Редактировать книгу</DialogTitle>
       <DialogContent>
-        <form id="subtype-form" onSubmit={formik.handleSubmit}>
+        <form data-testid="dialog-form" id="subtype-form" onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
             margin="normal"
@@ -21,8 +26,8 @@ function EditBookDialog({ open, onClose, formik }: EditBookDialogProps) {
             name="title"
             value={formik.values.title}
             onChange={formik.handleChange}
-            error={formik.touched.title && Boolean(formik.errors.title)}
-            helperText={formik.touched.title && formik.errors.title}
+            error={Boolean(formik.errors.title)}
+            helperText={formik.errors.title}
           />
           <TextField
             fullWidth
@@ -31,8 +36,8 @@ function EditBookDialog({ open, onClose, formik }: EditBookDialogProps) {
             name="author_name"
             value={formik.values.author_name}
             onChange={formik.handleChange}
-            error={formik.touched.author_name && Boolean(formik.errors.author_name)}
-            helperText={formik.touched.author_name && formik.errors.author_name}
+            error={Boolean(formik.errors.author_name)}
+            helperText={formik.errors.author_name}
           />
           <TextField
             fullWidth
@@ -41,8 +46,8 @@ function EditBookDialog({ open, onClose, formik }: EditBookDialogProps) {
             name="first_publish_year"
             value={formik.values.first_publish_year}
             onChange={formik.handleChange}
-            error={formik.touched.first_publish_year && Boolean(formik.errors.first_publish_year)}
-            helperText={formik.touched.first_publish_year && formik.errors.first_publish_year}
+            error={Boolean(formik.errors.first_publish_year)}
+            helperText={formik.errors.first_publish_year}
           />
         </form>
       </DialogContent>
@@ -58,4 +63,4 @@ function EditBookDialog({ open, onClose, formik }: EditBookDialogProps) {
   );
 }
 
-export default EditBookDialog;
+export default EditDialog;

@@ -1,16 +1,39 @@
-import { AppBar, Button, TextField, Toolbar, FormControl, MenuItem, Select } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Toolbar from '@mui/material/Toolbar';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { RefObject } from 'react';
+import { toast } from 'react-toastify';
+import { ValidationError } from 'yup';
 import Sort from '../../types/Sort';
 import styles from './Header.module.scss';
+import { queryValidationSchema } from '../../validations/searchValidationSchema';
 
 interface HeaderProps {
   inputRef: RefObject<HTMLInputElement>;
-  onSearch: () => void;
+  setQuery: (query: string) => void;
   sort: Sort;
   setSort: (sort: Sort) => void;
 }
 
-function Header({ inputRef, onSearch, sort, setSort }: HeaderProps) {
+function Header({ inputRef, setQuery, sort, setSort }: HeaderProps) {
+  const search = async () => {
+    try {
+      const value = inputRef.current?.value || '';
+      await queryValidationSchema.validate(value);
+      setQuery(value);
+    } catch (e) {
+      if (e instanceof ValidationError) {
+        toast(e.message);
+      } else {
+        toast('Непредвиденная ошибка');
+      }
+    }
+  };
+
   return (
     <AppBar className={styles.header}>
       <Toolbar className={styles.toolbar}>
@@ -31,7 +54,7 @@ function Header({ inputRef, onSearch, sort, setSort }: HeaderProps) {
           </Select>
         </FormControl>
         <TextField inputRef={inputRef} defaultValue="" />
-        <Button className={styles.button} variant="contained" onClick={onSearch} type="submit">
+        <Button className={styles.button} variant="contained" onClick={search} type="submit">
           Найти
         </Button>
       </Toolbar>

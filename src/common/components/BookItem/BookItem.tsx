@@ -1,4 +1,6 @@
-import { IconButton, ListItem, ListItemText } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import { forwardRef } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,10 +18,10 @@ const BookItem = forwardRef<HTMLLIElement, BookItemProps>(({ book, onRemove, onE
       primary={`${book.title} (${book.first_publish_year})`}
       secondary={`${book.author_name && book.author_name.join(', ')}`}
     />
-    <IconButton onClick={onEdit}>
+    <IconButton data-testid="edit-btn" onClick={onEdit}>
       <EditIcon />
     </IconButton>
-    <IconButton onClick={() => onRemove(book.key)}>
+    <IconButton data-testid="delete-btn" onClick={() => onRemove(book.key)}>
       <DeleteIcon />
     </IconButton>
   </ListItem>
